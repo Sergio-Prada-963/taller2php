@@ -42,7 +42,15 @@
                         <input type='number' placeholder='Ingrese su edad' name='edad'>";
                     break;
                 case "creaarO";
-                    echo "<h2>Creando Objeto...</h2>";
+                    echo "<h2>Creando Objeto...</h2>
+                    <label>Nombre de tu mascota</label>
+                    <input type='text' placeholder='Ingrese el nombre de la mascota' name='nombreMascota'>
+                    <label>Tipo de Mascota</label>
+                    <input type='text' placeholder='Ingrese el tipo de mascota' name='tipoMascota'>
+                    <label>Edad</label>
+                    <input type='text' placeholder='Ingrese la edad de la mascota' name='edadMascota'>
+                    <label>Color</label>
+                    <input type='text' placeholder='Ingrese el color de su mascota' name='colorMascota'>";
             };
             echo "<input type='submit' value='subir datos' name='envio'class='btn btn-warning m-2' ><br>";
             /* punto #1 */
@@ -50,11 +58,71 @@
                 $edad = $_POST["edad"];
                 echo "Su nombre es: $nombre y su edad es: $edad";
             /* punto #2 */
+                $tipoMasocota = $_POST["tipoMascota"];
+                $nombreMasocota = $_POST["nombreMascota"];
+                $edadMasocota = $_POST["edadMascota"];
+                $colorMasocota = $_POST["colorMascota"];
                 class Objetos 
                 {
-                    public $nombre = "Firulais";
+                    private $mascota;
+                    private $nombre;
+                    private $edad;
+                    private $color;
+                    
+                    public function __construct($mascota, $nombre, $edad, $color){
+                        $this->mascota = $mascota;
+                        $this->nombre = $nombre;
+                        $this->edad = $edad;
+                        $this->color = $color;
+                    }
+
+                    public function getMascota(){
+                        return $this->mascota;
+                    }
+                    public function getNombre(){
+                        return $this->nombre;
+                    }
+                    public function getEdad(){
+                        return $this->edad;
+                    }
+                    public function getColor(){
+                        return $this->color;
+                    }
                 }
         ?>
     </form>
+
+<?php
+class MiClase
+{
+    public $var1 = 'valor 1';
+    public $var2 = 'valor 2';
+    public $var3 = 'valor 3';
+
+    protected $protected = 'variable protegida';
+    private   $private   = 'variable privada';
+
+    function iterateVisible() {
+       echo "MiClase::iterateVisible:\n";
+       foreach ($this as $clave => $valor) {
+           print "$clave => $valor\n";
+       }
+    }
+}
+
+$clase = new MiClase();
+
+foreach($clase as $clave => $valor) {
+    print "$clave => $valor\n";
+}
+echo "\n";
+
+
+$clase->iterateVisible();
+
+?>
+
+
+
 </body>
 </html>
