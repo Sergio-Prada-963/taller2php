@@ -30,6 +30,7 @@
     <form method="POST">
         <?php
             $menu = $_POST["menu"];
+            echo $menu;
             $nombre;
             $edad;
             switch($menu){
@@ -41,7 +42,7 @@
                         <label>Edad</label>
                         <input type='number' placeholder='Ingrese su edad' name='edad'>";
                     break;
-                case "creaarO";
+                case "crearO";
                     echo "<h2>Creando Objeto...</h2>
                     <label>Nombre de tu mascota</label>
                     <input type='text' placeholder='Ingrese el nombre de la mascota' name='nombreMascota'>
@@ -51,6 +52,7 @@
                     <input type='text' placeholder='Ingrese la edad de la mascota' name='edadMascota'>
                     <label>Color</label>
                     <input type='text' placeholder='Ingrese el color de su mascota' name='colorMascota'>";
+                    break;
             };
             echo "<input type='submit' value='subir datos' name='envio'class='btn btn-warning m-2' ><br>";
             /* punto #1 */
@@ -89,6 +91,13 @@
                         return $this->color;
                     }
                 }
+                $pet = new Objetos($tipoMasocota, $nombreMasocota, $edadMasocota, $colorMasocota);
+                echo "<h3>Tipo de Mascota: </h3>";
+                echo $pet->getMascota() . "<br>" . "<h3>Nombre de la Mascota: </h3>";
+                echo $pet->getNombre() . "<br>" . "<h3>Edad de la Mascota: </h3>";
+                echo $pet->getEdad() . "<br>" . "<h3>Color de la Mascota: </h3>";
+                echo $pet->getColor();
+
         ?>
     </form>
 
