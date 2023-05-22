@@ -7,7 +7,7 @@
     <title>Taller 2</title>
 </head>
 <body>
-    <form action="taller2.php" method="POST">
+    <form action="taller2.php" method="post">
         <select name="menu">
             <option value="">---MENU---</option>
             <option value="lectura">1. Lectura de Datos</option>
@@ -33,28 +33,32 @@
             if(isset($_POST['submit'])){
                 $menu = $_POST['menu'];
                 switch($menu){
-                    case 'lectura';
-                        echo "
-                        <form action='taller2.php' method='POST'>
+                    case 'lectura':
+                        echo '
+                        <form action="taller2.php" method="post">
                             <h2>Datos Personales</h2>
                             <label>Nombre</label>
-                            <input type='text' placeholder='Ingrese su nombre' name='nombre'>
+                            <input type="text" placeholder="Ingrese su nombre" name="nombre">
                             <label>Edad</label>
-                            <input type='number' placeholder='Ingrese su edad' name='edad'>
-                            <input type='submit' value='subir datos' name='verr'> <br>
-                        </form>";
-                            if(($_POST['verr'])){
-                                $nombre = $_POST['nombre'];
-                                $_SESSION['nombre'] = $nombre;
-                                echo $_SESSION['nombre'];
-                                $edad = $_POST['edad'];
-                                $_SESSION['edad'] = $edad;
-                                echo $_SESSION['nombre'];
-                                echo "Su nombre es: $nombre y su edad es: $edad";   
-                            }else{ echo "no funcione :(";}
+                            <input type="number" placeholder="Ingrese su edad" name="edad">
+                            <input type="submit" value="subir datos" name="verr"> <br>
+                        </form>';
+                            if($menu == "lectura"){
+                                $fukiu = $_POST["verr"];
+                                if(isset($fukiu)){
+                                    $nombre = $_POST['nombre'];
+                                    $_SESSION['nombre'] = $nombre;
+                                    echo $_SESSION['nombre'];
+                                    $edad = $_POST['edad'];
+                                    $_SESSION['edad'] = $edad;
+                                    echo $_SESSION['nombre'];
+                                    echo "Su nombre es: $nombre y su edad es: $edad";   
+                                }else{ echo "no funcione :(";}
+                            }else{"aun no funciono";}
                         break;
                     case "crearO";
                         echo "<h2>Creando Objeto...</h2>
+                        <form action='taller2.php' method='post'>
                         <label>Nombre de tu mascota</label>
                         <input type='text' placeholder='Ingrese el nombre de la mascota' name='nombreMascota'>
                         <label>Tipo de Mascota</label>
@@ -62,7 +66,9 @@
                         <label>Edad</label>
                         <input type='number' placeholder='Ingrese la edad de la mascota' name='edadMascota'>
                         <label>Color</label>
-                        <input type='text' placeholder='Ingrese el color de su mascota' name='colorMascota'>";
+                        <input type='text' placeholder='Ingrese el color de su mascota' name='colorMascota'>
+                        <input type='submit' value='subir datos' name='verr'> <br>
+                        </form>";
                         break;
                 };
                 
