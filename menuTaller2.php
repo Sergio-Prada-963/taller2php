@@ -61,13 +61,20 @@
                 }
                 //Punto #3
                 if($_SESSION['menu'] == "mostrarO"){
-                    echo "algo anda mal - _ -";
                     $pet = new Objetos($_SESSION['tipoMascota'], $_SESSION['nombreMascota'], $_SESSION['edadMascota'], $_SESSION['colorMascota']);
                     echo "<h3>Tipo de Mascota: </h3>";
                     echo $pet->getMascota() . "<br>" . "<h3>Nombre de la Mascota: </h3>";
                     echo $pet->getNombre() . "<br>" . "<h3>Edad de la Mascota: </h3>";
                     echo $pet->getEdad() . "<br>" . "<h3>Color de la Mascota: </h3>";
-                    echo $pet->getColor();
+                    echo 
+                    $pet->getColor();
+                }
+                //Punto #5
+                if($_SESSION['menu'] == "mostrarA"){
+                    echo "aqui se muestra el array";
+                    for ($i=1; $i < $_SESSION['numeroLenguajes']+1; $i++) { 
+                        echo $_SESSION["nombreLenguajes$i"];
+                    }
                 }
             }
             //objeto del punto 2, 3, 12, 13, 14
@@ -114,31 +121,26 @@
                 // Punto #4
                 if($_SESSION['menu'] == "crearA"){
                     $_SESSION['numeroLenguajes'] = $_POST["numeroLenguajes"];
-                    echo '<form action="menuTaller2.php" method="post"> <br> <label>Ingrese el nombre del Lneguaje de Programacion</label><br>';
+                    echo '<form action="menuTaller2.php" method="post"> <br> <label>Ingrese el nombre del Lenguaje de Programacion</label><br>';
                         for ($i=1; $i < $_SESSION['numeroLenguajes']+1; $i++) { 
-                            echo '<input type="text" placeholder="Digite el Nombre Del Lenguaje" name="nombresLenguajes"><br>';
+                            echo "<input type='text' placeholder='Digite el Nombre Del Lenguaje' name='nombresLenguajes$i'><br>";
                         }
                         echo '<input type="submit" value="Enviar <--" name="lenguajes"><br>';
-                    echo '</form>';
-                        if(isset($_POST["nombresLenguajes"])){
-                            echo "Array Creado ✔";
-                        }else{"animooo aun no funciona";}
+                    echo '</form>';    
+                    echo "Array Creado ✔";
+                    if($_POST){
+                        for ($i=1; $i < $_SESSION['numeroLenguajes']+1; $i++) { 
+                            $_SESSION["nombreLenguajes$i"] = $_POST["nombreLenguajes$i"];
+                        }
+                    }
                 }
+                
                 else{
                     "Algo salio Mal :(";
                 }
             }
             
         ?>
-        <!-- <input type="submit" value="Subir Datos" name="enviarD"><br> -->
     </form>
-    <?php
-        // if(isset($_POST["enviarD"])){
-        //     $nombre = $_POST["nombre"];
-        //     $edad = $_POST["edad"];
-        //     echo "Su Nombre es: ". $nombre  . " y su Edad es: " .$edad;
-        // }
-    ?>
-
 </body>
 </html>
