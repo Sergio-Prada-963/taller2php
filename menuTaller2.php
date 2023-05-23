@@ -55,8 +55,11 @@
                         break;
                     case "crearA":
                         echo '<h2>Creando Array sobre lenguajes de Programacion...</h2>
-                        <label>cuantos lenguajes de Programacion sabes ?</label>
-                        <input type="number" placeholder="Digite el numero de los lenguajes de programacion que sabe" name="numeroLenguajes">';
+                        <label>Digite los lenguajes de Programacion que sabes</label><br>
+                        <input type="text" placeholder="Digite el nombre" name="nombresLenguajes1"><br>
+                        <input type="text" placeholder="Digite el nombre" name="nombresLenguajes2"><br>
+                        <input type="text" placeholder="Digite el nombre" name="nombresLenguajes3"><br>
+                        <input type="text" placeholder="Digite el nombre" name="nombresLenguajes4">';
                         break;
                 }
                 //Punto #3
@@ -71,9 +74,10 @@
                 }
                 //Punto #5
                 if($_SESSION['menu'] == "mostrarA"){
-                    echo "aqui se muestra el array";
-                    for ($i=1; $i < $_SESSION['numeroLenguajes']+1; $i++) { 
-                        echo $_SESSION["nombreLenguajes$i"];
+                    echo "aqui se muestra el array" . "<br>";
+                    for ($i=1; $i < 4+1; $i++) { 
+                        echo "Lenguaje #$i:   -> ";
+                        echo $_SESSION["nombresLenguajes$i"] . "<br>";
                     }
                 }
             }
@@ -120,27 +124,23 @@
                 }
                 // Punto #4
                 if($_SESSION['menu'] == "crearA"){
-                    $_SESSION['numeroLenguajes'] = $_POST["numeroLenguajes"];
-                    echo '<form action="menuTaller2.php" method="post"> <br> <label>Ingrese el nombre del Lenguaje de Programacion</label><br>';
-                        for ($i=1; $i < $_SESSION['numeroLenguajes']+1; $i++) { 
-                            echo "<input type='text' placeholder='Digite el Nombre Del Lenguaje' name='nombresLenguajes$i'><br>";
-                        }
-                        echo '<input type="submit" value="Enviar <--" name="lenguajes"><br>';
-                    echo '</form>';    
-                    echo "Array Creado ✔";
-                    if($_POST){
-                        for ($i=1; $i < $_SESSION['numeroLenguajes']+1; $i++) { 
-                            $_SESSION["nombreLenguajes$i"] = $_POST["nombreLenguajes$i"];
-                        }
+                    for ($i=1; $i < 4+1; $i++) { 
+                        $_SESSION["nombresLenguajes$i"] = $_POST["nombresLenguajes$i"];
                     }
-                }
-                
-                else{
-                    "Algo salio Mal :(";
-                }
+                    echo "Array Creado ✔";
+                } 
             }
             
         ?>
     </form>
+
+
+
+
+    <!-- Punto #6 -->
+    
+
+
+
 </body>
 </html>
