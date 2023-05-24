@@ -92,22 +92,16 @@
                         echo "Seleccione el Elemento a ELIMINAR <br>";
                         echo '<select name="deleteX">
                         <option value="">->-OPCIONES-<-</option>';
-                            for ($i=1; $i < count($_SESSION["saveArray"])+1; $i++) { 
-                                echo '<option value="nombresLenguajes'.$i.'">'.$_SESSION["saveArray"]["nombresLenguajes$i"].'</option>';
+                            foreach ($_SESSION["saveArray"] as $key => $value) {
+                                echo '<option value="'.$key.'">'."$value".'</option>';
                             }
                         echo "</select>";
                         break;
-
+                    case "agregarComienzoArray":
+                        echo "Agregar al Comienzo del Array";
+                        echo '<input type="text" placeholder="Digite el nuevo nombre" name="nombresLenguajesE">';
+                        break;
                 }
-                //Punto #3
-                // if($_SESSION['menu'] == "mostrarO"){
-                //     $pet = new Objetos($_SESSION['tipoMascota'], $_SESSION['nombreMascota'], $_SESSION['edadMascota'], $_SESSION['colorMascota']);
-                //     echo "<h3>Tipo de Mascota: </h3>";
-                //     echo $pet->getMascota() . "<br>" . "<h3>Nombre de la Mascota: </h3>";
-                //     echo $pet->getNombre() . "<br>" . "<h3>Edad de la Mascota: </h3>";
-                //     echo $pet->getEdad() . "<br>" . "<h3>Color de la Mascota: </h3>";
-                //     echo $pet->getColor();
-                // }
                 // Punto #5  NOTA ==== Aqui o en el CASE... al eliminar un elmento del array dara UNDEFAIN
                 // if($_SESSION['menu'] == "mostrarA"){
                 //     echo "Array recorrido con FOR" . "<br>";
@@ -120,8 +114,6 @@
                 //     echo var_dump($_SESSION["saveArray"]) . "<br>";
                 // }
             }    
-                //Punto #6
-                if($_SESSION['menu'] == ""){}
             //objeto del punto 2, 3, 12, 13, 14
             class Objetos {
                 private $mascota;
@@ -180,18 +172,13 @@
                     unset($_SESSION["saveArray"]["$delete"]);
                     echo "Eliminado Con Exito ✔";
                 }
-            }
-            
+                //Punto #9
+                if($_SESSION['menu'] == "agregarComienzoArray"){
+                    $añadirPricipio = $_POST["nombresLenguajesE"];
+                    //falta añadir
+                }
+            }  
         ?>
     </form>
-
-
-
-
-    <!-- Punto #6 -->
-    
-
-
-
 </body>
 </html>
