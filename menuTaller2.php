@@ -32,6 +32,7 @@
         <?php
             session_start();
             if(isset($_POST["submit"])){
+                $array = [];
                 $seleccion2 = $_POST["menu"];
                 $_SESSION['menu'] = $seleccion2;
                 switch($seleccion2){
@@ -61,26 +62,66 @@
                         <input type="text" placeholder="Digite el nombre" name="nombresLenguajes3"><br>
                         <input type="text" placeholder="Digite el nombre" name="nombresLenguajes4">';
                         break;
+                    case "mostrarO":
+                        $pet = new Objetos($_SESSION['tipoMascota'], $_SESSION['nombreMascota'], $_SESSION['edadMascota'], $_SESSION['colorMascota']);
+                        echo "<h3>Tipo de Mascota: </h3>";
+                        echo $pet->getMascota() . "<br>" . "<h3>Nombre de la Mascota: </h3>";
+                        echo $pet->getNombre() . "<br>" . "<h3>Edad de la Mascota: </h3>";
+                        echo $pet->getEdad() . "<br>" . "<h3>Color de la Mascota: </h3>";
+                        echo $pet->getColor();
+                        break;
+                    case "mostrarA":
+                        echo "Array recorrido con FOR" . "<br>";
+                        for ($i=1; $i < 5; $i++) { 
+                            echo "Nombre del Lenguaje #$i :  " . $_SESSION["saveArray"]["nombresLenguajes$i"] . "<br>";
+                        }
+                        echo "Visualizando el Array con print_r" . "<br>";
+                        echo print_r($_SESSION["saveArray"]) . "<br>";
+                        echo "Visualizando el Array con var_dump" . "<br>";
+                        echo var_dump($_SESSION["saveArray"]) . "<br>";
+                        break;
+                    case "eliminarPrimerArray":
+                        $first = array_shift($_SESSION["saveArray"]);
+                        echo "Primer elemento eliminado <br> El elemento eliminado fue:  $first";
+                        break;
+                    case "eliminarUltimoArray":
+                        $last = array_pop($_SESSION["saveArray"]);
+                        echo "Ultimo elemento del array eliminado <br> El elemento eliminado Fue:  $last";
+                        break;
+                    case "eliminarXArray":
+                        echo "Seleccione el Elemento a ELIMINAR <br>";
+                        echo '<select name="deleteX">
+                        <option value="">->-OPCIONES-<-</option>';
+                            for ($i=1; $i < count($_SESSION["saveArray"])+1; $i++) { 
+                                echo '<option value="nombresLenguajes'.$i.'">'.$_SESSION["saveArray"]["nombresLenguajes$i"].'</option>';
+                            }
+                        echo "</select>";
+                        break;
+
                 }
                 //Punto #3
-                if($_SESSION['menu'] == "mostrarO"){
-                    $pet = new Objetos($_SESSION['tipoMascota'], $_SESSION['nombreMascota'], $_SESSION['edadMascota'], $_SESSION['colorMascota']);
-                    echo "<h3>Tipo de Mascota: </h3>";
-                    echo $pet->getMascota() . "<br>" . "<h3>Nombre de la Mascota: </h3>";
-                    echo $pet->getNombre() . "<br>" . "<h3>Edad de la Mascota: </h3>";
-                    echo $pet->getEdad() . "<br>" . "<h3>Color de la Mascota: </h3>";
-                    echo 
-                    $pet->getColor();
-                }
-                //Punto #5
-                if($_SESSION['menu'] == "mostrarA"){
-                    echo "aqui se muestra el array" . "<br>";
-                    for ($i=1; $i < 4+1; $i++) { 
-                        echo "Lenguaje #$i:   -> ";
-                        echo $_SESSION["nombresLenguajes$i"] . "<br>";
-                    }
-                }
-            }
+                // if($_SESSION['menu'] == "mostrarO"){
+                //     $pet = new Objetos($_SESSION['tipoMascota'], $_SESSION['nombreMascota'], $_SESSION['edadMascota'], $_SESSION['colorMascota']);
+                //     echo "<h3>Tipo de Mascota: </h3>";
+                //     echo $pet->getMascota() . "<br>" . "<h3>Nombre de la Mascota: </h3>";
+                //     echo $pet->getNombre() . "<br>" . "<h3>Edad de la Mascota: </h3>";
+                //     echo $pet->getEdad() . "<br>" . "<h3>Color de la Mascota: </h3>";
+                //     echo $pet->getColor();
+                // }
+                // Punto #5  NOTA ==== Aqui o en el CASE... al eliminar un elmento del array dara UNDEFAIN
+                // if($_SESSION['menu'] == "mostrarA"){
+                //     echo "Array recorrido con FOR" . "<br>";
+                //     for ($i=1; $i < 5; $i++) { 
+                //         echo "Nombre del Lenguaje #$i :  " . $_SESSION["saveArray"]["nombresLenguajes$i"] . "<br>";
+                //     }
+                //     echo "Visualizando el Array con print_r" . "<br>";
+                //     echo print_r($_SESSION["saveArray"]) . "<br>";
+                //     echo "Visualizando el Array con var_dump" . "<br>";
+                //     echo var_dump($_SESSION["saveArray"]) . "<br>";
+                // }
+            }    
+                //Punto #6
+                if($_SESSION['menu'] == ""){}
             //objeto del punto 2, 3, 12, 13, 14
             class Objetos {
                 private $mascota;
@@ -126,9 +167,19 @@
                 if($_SESSION['menu'] == "crearA"){
                     for ($i=1; $i < 4+1; $i++) { 
                         $_SESSION["nombresLenguajes$i"] = $_POST["nombresLenguajes$i"];
+                        $elemento = $_POST["nombresLenguajes$i"];
+                        $array["nombresLenguajes$i"] = $elemento;
+                        print_r($array);
                     }
                     echo "Array Creado ✔";
+                    $_SESSION["saveArray"] = $array;
                 } 
+                //punto #8
+                if($_SESSION['menu'] == "eliminarXArray"){
+                    $delete = $_POST["deleteX"];
+                    unset($_SESSION["saveArray"]["$delete"]);
+                    echo "Eliminado Con Exito ✔";
+                }
             }
             
         ?>
