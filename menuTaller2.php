@@ -93,7 +93,7 @@
                         break;
                     case "eliminarXArray":
                         echo "<h2>Seleccione el Elemento a ELIMINAR</h2>";
-                        echo '<select name="deleteX">
+                        echo '<select name="deleteX" class="form-select form-select-lg mb-3 text-center" aria-label=".form-select-lg example">
                         <option value="">->-OPCIONES-<-</option>';
                             foreach ($_SESSION["saveArray"] as $key => $value) {
                                 echo '<option value="'.$key.'">'."$value".'</option>';
