@@ -1,2 +1,2 @@
 # taller2php
-<a href="https://github.com/Sergio-Prada-963/taller2php.git"> mirar</a>
+<a href="https://sergio-prada-963.github.io/taller2php/"> mirar</a>
