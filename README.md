@@ -1,2 +1,2 @@
 # taller2php
-<a href="taller2php"> mirar</a>
+<a href="menuTaller2.php"> mirar</a>
