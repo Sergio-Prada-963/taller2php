@@ -1,0 +1,69 @@
+*, body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* #ff620081 */
+body{
+    display: grid;
+    place-items: center;
+    background: linear-gradient(-45deg, #ff620081, rgba(219, 219, 219, 0.437), #ff620081, rgba(219, 219, 219, 0.437));
+    background-size: 400% 400%;
+    animation: background 10s linear infinite;
+    height: 100vh;
+    background-attachment: fixed;
+}
+/* animacion de background */
+@keyframes background{
+    0% {background-position: 0% 50%;}
+    50%{background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+#menuP{
+    background-color: #ff62007d;
+    padding: 3rem;
+    margin: 2rem;
+    width: 50rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+#menuP select:focus{
+    background-color: #ff620069;
+}
+#menuP select{
+    background-color: rgba(255, 255, 255, 0.245);
+    border: 2px rgb(255, 255, 255) solid;
+}
+#opt{
+    background-color: rgba(255, 255, 255, 0.245);
+}
+
+#menuSegundario{
+    background-color: #ff350da1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    border-radius: 2rem;
+    gap: 0.5rem;
+}
+#menuSegundario label{
+    font-size: 1.5rem;
+}
+#input{
+    background-color: #e88c0c8f;
+    text-align: center;
+    padding: 0.3rem;
+    border-radius: 0.8rem;
+    width: 15rem;
+    color: white;
+    border: 1px white solid;
+    caret-color: #FFB524;
+}
+#input::placeholder{
+    color: rgba(0, 0, 0, 0.6);
+}
